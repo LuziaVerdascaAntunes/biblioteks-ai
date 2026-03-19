@@ -4,23 +4,25 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 font-sans antialiased;
+    @apply bg-nordic-sand text-nordic-dark font-sans antialiased;
   }
 }
 
 @layer components {
   .badge {
-    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+    @apply inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium font-mono;
   }
+  /* brand-aligned task + lang badges — powder-blue tint */
   .badge-task {
-    @apply badge bg-blue-100 text-blue-800;
+    @apply badge bg-[rgba(148,177,200,0.20)] text-[#1a0905] border border-[rgba(148,177,200,0.40)];
   }
   .badge-lang {
-    @apply badge bg-teal-100 text-teal-800;
+    @apply badge bg-[rgba(148,177,200,0.30)] text-[#1a0905] border border-[rgba(148,177,200,0.50)];
   }
   .badge-cost {
-    @apply badge bg-amber-100 text-amber-800;
+    @apply badge bg-[rgba(227,223,206,0.80)] text-[#1a0905] border border-[rgba(26,9,5,0.15)];
   }
+  /* functional / semantic badges — kept for legibility */
   .badge-ethics-high {
     @apply badge bg-green-100 text-green-800;
   }
@@ -39,7 +41,8 @@
   .badge-maturity-research {
     @apply badge bg-purple-100 text-purple-800 font-semibold;
   }
+  /* filter-chip uses nordic-blue which now maps to night-bordeaux */
   .filter-chip {
-    @apply flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-nordic-blue text-white;
+    @apply flex items-center gap-1 px-2 py-1 rounded-sm text-xs font-medium font-mono bg-nordic-blue text-[#e3dfce];
   }
 }

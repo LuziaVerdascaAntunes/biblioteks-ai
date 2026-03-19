@@ -8,14 +8,17 @@ export default {
     extend: {
       colors: {
         nordic: {
-          blue: '#1a3a5c',
-          teal: '#2a7f7f',
-          sand: '#f5f0e8',
-          muted: '#6b7280',
+          blue:  '#4c050d',   /* Night-bordeaux — The Stamp / primary action */
+          teal:  '#94b1c8',   /* Powder-blue — The Folder / data */
+          sand:  '#e3dfce',   /* Bone — The Canvas / backgrounds */
+          dark:  '#1a0905',   /* Coffee-bean — The Ink / body text */
+          muted: '#5c4840',   /* Warm muted mid-tone */
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans:  ['Roboto Flex', 'system-ui', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        mono:  ['IBM Plex Mono', 'Courier New', 'monospace'],
       }
     },
   },
