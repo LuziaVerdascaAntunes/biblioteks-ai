@@ -13,13 +13,20 @@ This portfolio should feel distinctive and memorable — not generic. When using
 
 ## Stack
 
-<!-- Update these to match your actual setup -->
-- Framework: React
-- Styling: [CSS Modules / Tailwind / styled-components]
-- Animation: [Motion / Framer Motion / CSS only]
+- Framework: React 18 + Vite 6
+- Styling: Tailwind CSS 3.4 with PostCSS; Nordic-themed design token palette (nordic-blue, nordic-teal, nordic-sand, nordic-dark, nordic-muted)
+- Animation: CSS animations via Tailwind; no external animation library
 
 ## Conventions
 
 - Keep components modular and reusable
 - Use CSS variables for all design tokens (colors, spacing, typography)
 - Animate intentionally — one well-orchestrated effect beats scattered micro-interactions
+
+## Git Workflow
+
+- Never work directly on main
+- At the start of every session, check which branch is active
+- If on main, create a new branch before making any changes
+- Suggest a descriptive branch name and ask for confirmation before creating it
+- Examples: feature-search, ui-updates, ai-integration, fix-filters
