@@ -63,17 +63,26 @@ function buildChips(filters) {
 
 export default function ExplorerPage() {
   const [filters, setFilters] = useState(INITIAL_FILTERS)
+  const [query, setQuery] = useState('')
 
   const filteredTools = useMemo(() => {
+    const q = query.trim().toLowerCase()
     return tools.filter((tool) => {
       if (filters.tasks.length > 0 && !filters.tasks.some((t) => tool.tasks.includes(t))) return false
       if (filters.languages.length > 0 && !filters.languages.some((l) => tool.language_support.includes(l))) return false
       if (filters.costs.length > 0 && !filters.costs.includes(tool.cost_model)) return false
       if (filters.integrations.length > 0 && !filters.integrations.some((i) => tool.integrations.includes(i))) return false
       if (filters.maturity.length > 0 && !filters.maturity.includes(tool.maturity)) return false
+      if (q) {
+        const haystack = [
+          tool.name, tool.description_en, tool.description_sv,
+          tool.notes_en, tool.notes_sv,
+        ].filter(Boolean).join(' ').toLowerCase()
+        if (!haystack.includes(q)) return false
+      }
       return true
     })
-  }, [filters])
+  }, [filters, query])
 
   const chips = buildChips(filters)
 
@@ -91,6 +100,24 @@ export default function ExplorerPage() {
           six-criterion rubric designed for Nordic cataloguing workflows.
           Scores reflect the state of the tool as verified below — apply your own professional judgement.
         </p>
+      </div>
+
+      {/* Full-text search */}
+      <div className="mb-5">
+        <label htmlFor="tool-search" className="sr-only">Search tools</label>
+        <input
+          id="tool-search"
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search tools by name, description, or notes…"
+          className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-nordic-teal focus:border-transparent"
+        />
+        {query.trim() && (
+          <p className="mt-1.5 text-xs text-gray-500">
+            {filteredTools.length} result{filteredTools.length === 1 ? '' : 's'} for “{query.trim()}”
+          </p>
+        )}
       </div>
 
       {/* Active filter chips */}

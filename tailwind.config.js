@@ -10,7 +10,7 @@ export default {
         nordic: {
           blue:  '#4c050d',   /* Night-bordeaux — The Stamp / primary action */
           teal:  '#94b1c8',   /* Powder-blue — The Folder / data */
-          sand:  '#e3dfce',   /* Bone — The Canvas / backgrounds */
+          sand:  '#F1EDE4',   /* Soft Linen — The Canvas / backgrounds (unified brand 2026-06-24) */
           dark:  '#1a0905',   /* Coffee-bean — The Ink / body text */
           muted: '#5c4840',   /* Warm muted mid-tone */
         }
