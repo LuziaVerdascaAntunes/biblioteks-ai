@@ -6,9 +6,13 @@
 ## Project Role
 
 AI tool comparison project for Nordic librarians. Six-criteria evaluation rubric.
-Phase 0 (seed data) and Phase 1 are complete. Phase 2 — expanding tool coverage beyond the
-original 11 — is underway; see `C:\Users\luzia\OneDrive\Claude-Cowork\projects\biblioteks-ai-status.md`
-for the current batch status.
+
+**Updated 2026-08-01.** Phases 0 and 1 are complete, and **Phase 2 batch 2 was merged on 2026-07-07
+(PR #1)**: the live site serves **16 tools**, up from the original 11. The five added close the
+Nordic national-tooling gap — NB-BERT and NB-Whisper (National Library of Norway), FinBERT/TurkuNLP
+(Finland), DanskBERT (Denmark) — plus Transkribus, the first handwritten/printed-document entry.
+This section previously said Phase 2 was "underway", which stopped being true five weeks ago.
+Current status: `C:\Users\luzia\OneDrive\Claude-Cowork\projects\biblioteks-ai-status.md`.
 
 ## Source of Truth
 
@@ -16,12 +20,17 @@ for the current batch status.
 |---|---|
 | Code | This repository |
 | Project status | `C:\Users\luzia\OneDrive\Claude-Cowork\projects\biblioteks-ai-status.md` |
-| Durable knowledge | `C:\Users\luzia\OneDrive\Knowledge vault\01_Projects\biblioteks-ai.md` |
+| Surfaces map | `C:\Users\luzia\OneDrive\Claude-Cowork\projects\biblioteks-ai\SURFACES.md` |
 | Active registry | `C:\Users\luzia\OneDrive\Claude-Cowork\projects\active-projects.md` |
 
 Before implementation work, also read:
 - `C:\Users\luzia\OneDrive\Claude-Cowork\AI-CONTEXT.md`
 - `C:\Users\luzia\OneDrive\Claude-Cowork\memory\current-focus.md` (when continuity matters)
+
+**Corrected 2026-08-01:** the durable-knowledge row above used to point at
+`OneDrive\Knowledge vault\01_Projects\biblioteks-ai.md`. That path is wrong twice over — the
+OneDrive vault root was an empty shell removed on 2026-07-03, and the live vault at
+`C:\Users\luzia\Knowledge vault` has no `01_Projects` folder. Nothing was ever read from it.
 
 ## Stack
 
@@ -35,6 +44,7 @@ Before implementation work, also read:
 npm run dev
 npm run build
 npm run preview
+npm test          # vitest, 13 tests over tools.json integrity
 ```
 
 Run `npm run build` after changes affecting source code, configuration, or `tools.json` data.
@@ -57,3 +67,15 @@ Run `npm run build` after changes affecting source code, configuration, or `tool
 - Keep generated dependencies and caches out of OneDrive.
 - Keep data decisions traceable in the vault or status file, not only in code comments.
 - After meaningful changes, update the Claude-Cowork project status or session log.
+
+## Constraints — things that look like bugs but are deliberate
+
+- **`src/data/tools.json` is the product.** Schema changes there break the 13-test vitest suite by
+  design. Run `npm test` before committing any data edit.
+- **Deployment is GitHub Pages via Actions on push to `main`** (`.github/workflows/deploy.yml`,
+  publishes `dist`). There is no manual deploy step.
+- **The claude.ai project's uploaded PDFs are not a stale source snapshot.** They are a curated
+  research library — the SOU 2025 AI-kommissionen report, twelve-plus peer-reviewed papers on AI in
+  cataloguing, and the PRD. An audit once recommended deleting them as "33% of capacity"; that would
+  have destroyed the reading list and left the two actual source files untouched. Keep them.
+- **`CLAUDE.md` is a pointer, not a manual.** Its substance belongs here.
